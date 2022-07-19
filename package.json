@@ -25,6 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "chrome": "set \"BROWSER=none\" && start chrome http://localhost:3000 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
