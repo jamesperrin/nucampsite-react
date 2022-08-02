@@ -1,8 +1,10 @@
 import { Col, Row, Container, Card, CardBody, CardHeader } from 'reactstrap';
+import SubHeader from '../components/SubHeader';
 
 const AboutPage = () => {
   return (
     <Container>
+      <SubHeader current='About Us' />
       <Row className='row-content'>
         <Col sm='6'>
           <h1>Our Mission</h1>
@@ -15,7 +17,7 @@ const AboutPage = () => {
             each other.
           </p>
         </Col>
-        <Col>
+        <Col sm='6'>
           <Card>
             <CardHeader className='bg-primary text-white'>
               <h3>Facts at a Glance</h3>
@@ -54,7 +56,9 @@ const AboutPage = () => {
         </Col>
       </Row>
       <Row className='row-content'>
-        <Col xs='12'><h3>Community Partners</h3></Col>
+        <Col xs='12'>
+          <h3>Community Partners</h3>
+        </Col>
       </Row>
     </Container>
   );
