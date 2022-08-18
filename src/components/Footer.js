@@ -10,7 +10,7 @@ const Footer = () => {
             <h5>Links</h5>
             <ul className='list-unstyled'>
               <li>
-                <Link to='/' title=''>Home</Link>
+                <Link to='/' title='Home Page'>Home</Link>
               </li>
               <li>
                 <Link to='/directory' title='Directory'>Directory</Link>
