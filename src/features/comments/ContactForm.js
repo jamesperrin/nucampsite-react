@@ -1,10 +1,14 @@
 import { Button, Label, Col, FormGroup } from 'reactstrap';
-import { Formik, Field, Form } from 'formik';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import validateContactForm from '../../utils/validateContactForm';
 
 const ContactForm = () => {
   const handleSubmit = (values, { resetForm }) => {
     console.log('form values:', values);
     console.log('in JSON format:\n', JSON.stringify(values, null, 2));
+
+    // do your stuff
+    resetForm();
   };
 
   return (
@@ -18,7 +22,8 @@ const ContactForm = () => {
         contactType: 'By Phone',
         feedback: '',
       }}
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit}
+      validate={validateContactForm}>
       <Form>
         <FormGroup row key='1'>
           <Label htmlFor='firstName' md='2'>
@@ -31,6 +36,9 @@ const ContactForm = () => {
               id='firstName'
               placeholder='First Name'
             />
+            <ErrorMessage name='firstName'>
+              {(msg) => <p className='text-danger'>{msg}</p>}
+            </ErrorMessage>
           </Col>
         </FormGroup>
 
@@ -40,6 +48,9 @@ const ContactForm = () => {
           </Label>
           <Col md='10'>
             <Field className='form-control' name='lastName' id='lastName' placeholder='Last Name' />
+            <ErrorMessage name='lastName'>
+              {(msg) => <p className='text-danger'>{msg}</p>}
+            </ErrorMessage>
           </Col>
         </FormGroup>
 
@@ -49,6 +60,9 @@ const ContactForm = () => {
           </Label>
           <Col md='10'>
             <Field className='form-control' name='phoneNum' id='phoneNum' placeholder='Phone' />
+            <ErrorMessage name='phoneNum'>
+              {(msg) => <p className='text-danger'>{msg}</p>}
+            </ErrorMessage>
           </Col>
         </FormGroup>
 
@@ -64,6 +78,9 @@ const ContactForm = () => {
               placeholder='Email'
               type='email'
             />
+            <ErrorMessage name='email'>
+              {(msg) => <p className='text-danger'>{msg}</p>}
+            </ErrorMessage>
           </Col>
         </FormGroup>
         <FormGroup row key='5'>
