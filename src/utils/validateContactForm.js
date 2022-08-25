@@ -1,28 +1,29 @@
 const validateContactForm = (values) => {
   const errors = {};
+  const { firstName, lastName, email, phoneNum } = values;
 
-  if (!values.firstName) {
-    errors.firstName = 'required';
-  } else if (values.firstName.length < 2) {
+  if (!firstName) {
+    errors.firstName = 'Required';
+  } else if (firstName.length < 2) {
     errors.firstName = 'Must be at least 2 characters.';
-  } else if (values.firstName.length > 15) {
+  } else if (firstName.length > 15) {
     errors.firstName = 'Must be 15 characters or less.';
   }
 
-  if (!values.lastName) {
-    errors.lastName = 'required';
-  } else if (values.lastName.length < 2) {
+  if (!lastName) {
+    errors.lastName = 'Required';
+  } else if (lastName.length < 2) {
     errors.lastName = 'Must be at least 2 characters.';
-  } else if (values.lastName.length > 15) {
+  } else if (lastName.length > 15) {
     errors.lastName = 'Must be 15 characters or less.';
   }
 
   const reg = /^\d+$/;
-  if (!reg.test(values.phoneNum)) {
+  if (!reg.test(phoneNum)) {
     errors.phoneNum = 'The phone number should contain only numbers.';
   }
 
-  if (!values.email.includes('@')) {
+  if (!email.includes('@')) {
     errors.email = 'Email should contain a @';
   }
 
