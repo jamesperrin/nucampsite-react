@@ -9,7 +9,8 @@ import {
   ButtonGroup,
   ButtonToolbar,
 } from 'reactstrap';
-import { Formik, Field, Form } from 'formik';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import validateCommentForm from '../../utils/validateCommentForm';
 
 const CommentForm = ({ campsiteId }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -35,7 +36,10 @@ const CommentForm = ({ campsiteId }) => {
       <Modal toggle={() => setModalOpen(false)} isOpen={modalOpen}>
         <ModalHeader>Add Comment</ModalHeader>
         <ModalBody>
-          <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={handleSubmit}
+            validate={validateCommentForm}>
             <Form>
               <FormGroup>
                 <Label htmlFor='rating'>Rating</Label>
@@ -47,14 +51,23 @@ const CommentForm = ({ campsiteId }) => {
                   <option>4</option>
                   <option>5</option>
                 </Field>
+                <ErrorMessage name='rating'>
+                  {(msg) => <p className='text-danger'>{msg}</p>}
+                </ErrorMessage>
               </FormGroup>
               <FormGroup>
                 <Label htmlFor='author'>Your Name</Label>
                 <Field name='author' id='author' placeholder='Your Name' className='form-control' />
+                <ErrorMessage name='author'>
+                  {(msg) => <p className='text-danger'>{msg}</p>}
+                </ErrorMessage>
               </FormGroup>
               <FormGroup>
                 <Label htmlFor='commentText'>Comment</Label>
-                <Field name='commentText' id='commentText' className='form-control' />
+                <Field name='commentText' id='commentText' className='form-control' as='textarea' rows='6' />
+                <ErrorMessage name='commentText'>
+                  {(msg) => <p className='text-danger'>{msg}</p>}
+                </ErrorMessage>
               </FormGroup>
 
               <ButtonToolbar>
@@ -68,7 +81,7 @@ const CommentForm = ({ campsiteId }) => {
                     Reset
                   </Button>
                 </ButtonGroup>
-                <ButtonGroup>
+                <ButtonGroup className='me-2'>
                   <Button type='cancel' color='danger' onClick={() => setModalOpen(false)}>
                     Cancel
                   </Button>
